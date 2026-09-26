@@ -198,10 +198,22 @@ function displayAssignments() {
 
     if (filteredAssignments.length === 0) {
 
-        assignmentList.innerHTML =
-            "<p>No assignments found.</p>";
+    assignmentList.innerHTML = `
+        <div class="empty-state">
 
-    }
+            <h3>No assignments found</h3>
+
+            <p>
+                Add an assignment using the form above.
+            </p>
+
+        </div>
+    `;
+
+    updateDashboard();
+
+    return;
+}
 
 
     filteredAssignments.forEach(
