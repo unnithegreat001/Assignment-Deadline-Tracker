@@ -617,3 +617,32 @@ sort.addEventListener(
 // Display assignments when page loads
 
 displayAssignments();
+const clearAllBtn =
+    document.getElementById("clearAllBtn");
+
+clearAllBtn.addEventListener(
+    "click",
+    function () {
+
+        if (assignments.length === 0) {
+            alert("There are no assignments to clear.");
+            return;
+        }
+
+        const confirmClear =
+            confirm(
+                "Are you sure you want to delete all assignments?"
+            );
+
+        if (!confirmClear) {
+            return;
+        }
+
+        assignments = [];
+
+        saveAssignments();
+
+        displayAssignments();
+
+    }
+);
