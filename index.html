@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Assignment Deadline Tracker</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>Assignment Deadline Tracker</h1>
+            <p>Keep track of your assignments and deadlines</p>
+        </header>
+
+        <!-- Dashboard -->
+
+        <section class="dashboard">
+
+            <section class="dashboard">
+
+    <div class="card">
+        <h3>Total Assignments</h3>
+        <p id="totalAssignments">0</p>
+    </div>
+
+    <div class="card">
+        <h3>Pending</h3>
+        <p id="pendingAssignments">0</p>
+    </div>
+
+    <div class="card">
+        <h3>Completed</h3>
+        <p id="completedAssignments">0</p>
+    </div>
+
+    <div class="card">
+        <h3>Overdue</h3>
+        <p id="overdueAssignments">0</p>
+    </div>
+
+    <div class="card">
+        <h3>Due Today</h3>
+        <p id="todayAssignments">0</p>
+    </div>
+
+    <div class="card">
+        <h3>Due This Week</h3>
+        <p id="weekAssignments">0</p>
+    </div>
+
+</section>
+
+
+        <!-- Add Assignment -->
+
+        <section class="assignment-form">
+
+            <h2>Add Assignment</h2>
+
+            <form id="assignmentForm">
+
+                <div class="input-group">
+                    <label for="title">Assignment Title</label>
+
+                    <input
+                        type="text"
+                        id="title"
+                        placeholder="Enter assignment title"
+                        required
+                    >
+                </div>
+
+
+                <div class="input-group">
+                    <label for="subject">Subject</label>
+
+                    <input
+                        type="text"
+                        id="subject"
+                        placeholder="Enter subject"
+                        required
+                    >
+                </div>
+
+
+                <div class="input-group">
+                    <label for="deadline">Deadline</label>
+
+                    <input
+                        type="date"
+                        id="deadline"
+                        required
+                    >
+                </div>
+
+
+                <div class="input-group">
+                    <label for="priority">Priority</label>
+
+                    <select id="priority">
+
+                        <option value="Low">Low</option>
+
+                        <option value="Medium" selected>
+                            Medium
+                        </option>
+
+                        <option value="High">
+                            High
+                        </option>
+
+                    </select>
+                </div>
+
+
+                <button type="submit">
+                    Add Assignment
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- Assignment List -->
+
+        <section class="assignment-section">
+
+            <div class="section-header">
+
+    <h2>My Assignments</h2>
+
+    <div class="controls">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Search assignments..."
+        >
+
+        <select id="filter">
+
+            <option value="all">
+                All
+            </option>
+
+            <option value="pending">
+                Pending
+            </option>
+
+            <option value="completed">
+                Completed
+            </option>
+
+            <option value="overdue">
+                Overdue
+            </option>
+
+        </select>
+
+        <select id="sort">
+
+            <option value="default">
+                Sort by
+            </option>
+
+            <option value="nearest">
+                Nearest deadline
+            </option>
+
+            <option value="farthest">
+                Farthest deadline
+            </option>
+
+        </select>
+
+    </div>
+
+</div>
+
+
+            <div id="assignmentList">
+
+                <!-- Assignments will appear here -->
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
