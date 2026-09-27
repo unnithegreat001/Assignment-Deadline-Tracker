@@ -268,13 +268,21 @@ function displayAssignments() {
         Subject: ${assignment.subject}
     </p>
 
-    <p>
-        Deadline: ${formatDate(assignment.deadline)}
-    </p>
+   <p>
+    Subject: ${assignment.subject}
+</p>
 
-    <p class="deadline-message">
-        ${getDeadlineMessage(assignment.deadline)}
-    </p>
+<p>
+    Deadline: ${formatDate(assignment.deadline)}
+</p>
+
+<p class="priority priority-${assignment.priority.toLowerCase()}">
+    Priority: ${assignment.priority}
+</p>
+
+<p class="deadline-message">
+    ${getDeadlineMessage(assignment.deadline)}
+</p>
 
     <p class="${statusClass}">
         Status: ${statusText}
