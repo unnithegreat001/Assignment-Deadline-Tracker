@@ -143,10 +143,24 @@
 
             </select>
         </div>
+<div class="input-group">
+    <label for="reminder">Reminder</label>
 
+    <select id="reminder">
+        <option value="none">No Reminder</option>
+        <option value="0">On Deadline</option>
+        <option value="1">1 Day Before</option>
+        <option value="2">2 Days Before</option>
+        <option value="7">1 Week Before</option>
+    </select>
+</div>
         <button type="submit">
-            ➕ Add Assignment
-        </button>
+    ➕ Add Assignment
+</button>
+
+<button type="button" id="notificationBtn" class="notification-btn">
+    🔔 Enable Notifications
+</button>
 
     </form>
 
