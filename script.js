@@ -101,52 +101,71 @@ function saveAssignments() {
 }
 // Search assignments
 
-const searchText =
-    search.value.toLowerCase().trim();
+    const searchText =
+        search.value.toLowerCase().trim();
 
 
-if (searchText !== "") {
+    if (searchText !== "") {
 
-    filteredAssignments =
-        filteredAssignments.filter(
-            assignment =>
-                assignment.title
-                    .toLowerCase()
-                    .includes(searchText)
+        filteredAssignments =
+            filteredAssignments.filter(
+                assignment =>
+                    assignment.title
+                        .toLowerCase()
+                        .includes(searchText)
 
-                ||
+                    ||
 
-                assignment.subject
-                    .toLowerCase()
-                    .includes(searchText)
+                    assignment.subject
+                        .toLowerCase()
+                        .includes(searchText)
+            );
+
+    }
+
+
+    // Sort assignments
+
+    if (sort.value === "nearest") {
+
+        filteredAssignments.sort(
+            (a, b) =>
+                new Date(a.deadline) -
+                new Date(b.deadline)
         );
 
-}
+    }
 
 
-// Sort assignments
+    if (sort.value === "farthest") {
 
-if (sort.value === "nearest") {
+        filteredAssignments.sort(
+            (a, b) =>
+                new Date(b.deadline) -
+                new Date(a.deadline)
+        );
 
-    filteredAssignments.sort(
-        (a, b) =>
-            new Date(a.deadline) -
-            new Date(b.deadline)
-    );
-
-}
+    }
 
 
-if (sort.value === "farthest") {
+    // Sort by priority
 
-    filteredAssignments.sort(
-        (a, b) =>
-            new Date(b.deadline) -
-            new Date(a.deadline)
-    );
+    if (sort.value === "priority") {
 
-}
+        const priorityOrder = {
+            High: 3,
+            Medium: 2,
+            Low: 1
+        };
 
+
+        filteredAssignments.sort(
+            (a, b) =>
+                priorityOrder[b.priority] -
+                priorityOrder[a.priority]
+        );
+
+    }
 // Display assignments
 
 function displayAssignments() {
@@ -265,10 +284,6 @@ function displayAssignments() {
     <h3>${assignment.title}</h3>
 
     <p>
-        Subject: ${assignment.subject}
-    </p>
-
-   <p>
     Subject: ${assignment.subject}
 </p>
 
