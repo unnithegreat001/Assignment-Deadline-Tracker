@@ -22,10 +22,10 @@
 
        <!-- Dashboard -->
 
-<section class="dashboard">
+<section class="dashboard" aria-label="Assignment summary">
 
     <div class="card">
-        <div class="stat-icon">📚</div>
+        <div class="stat-icon" aria-hidden="true">📚</div>
         <div>
             <h3>Total Assignments</h3>
             <p id="totalAssignments">0</p>
@@ -33,7 +33,7 @@
     </div>
 
     <div class="card">
-        <div class="stat-icon">⏳</div>
+        <div class="stat-icon" aria-hidden="true">⏳</div>
         <div>
             <h3>Pending</h3>
             <p id="pendingAssignments">0</p>
@@ -41,7 +41,7 @@
     </div>
 
     <div class="card">
-        <div class="stat-icon">✅</div>
+        <div class="stat-icon" aria-hidden="true">✅</div>
         <div>
             <h3>Completed</h3>
             <p id="completedAssignments">0</p>
@@ -49,7 +49,7 @@
     </div>
 
     <div class="card">
-        <div class="stat-icon">⚠️</div>
+        <div class="stat-icon" aria-hidden="true">⚠️</div>
         <div>
             <h3>Overdue</h3>
             <p id="overdueAssignments">0</p>
@@ -57,7 +57,7 @@
     </div>
 
     <div class="card">
-        <div class="stat-icon">📅</div>
+        <div class="stat-icon" aria-hidden="true">📅</div>
         <div>
             <h3>Due Today</h3>
             <p id="todayAssignments">0</p>
@@ -65,7 +65,7 @@
     </div>
 
     <div class="card">
-        <div class="stat-icon">🗓️</div>
+        <div class="stat-icon" aria-hidden="true">🗓️</div>
         <div>
             <h3>Due This Week</h3>
             <p id="weekAssignments">0</p>
@@ -95,23 +95,13 @@
         <div class="input-group">
             <label for="title">Assignment Title</label>
 
-            <input
-                type="text"
-                id="title"
-                placeholder="e.g. Data Structures Assignment"
-                required
-            >
+            <input type="text" id="title" placeholder="e.g. Data Structures Assignment" autocomplete="off" required>
         </div>
 
         <div class="input-group">
             <label for="subject">Subject</label>
 
-            <input
-                type="text"
-                id="subject"
-                placeholder="e.g. Computer Science"
-                required
-            >
+            <input type="text" id="subject" placeholder="e.g. Computer Science" autocomplete="off" required>
         </div>
 
         <div class="input-group">
@@ -183,31 +173,24 @@
 
     <div class="search-box">
         🔍
-        <input
-            type="text"
-            id="search"
-            placeholder="Search assignments..."
-        >
+        <input type="text" id="search" placeholder="Search assignments..." aria-label="Search assignments">
     </div>
 
-    <select id="filter">
+    <select id="filter" aria-label="Filter assignments">
         <option value="all">All Assignments</option>
         <option value="pending">Pending</option>
         <option value="completed">Completed</option>
         <option value="overdue">Overdue</option>
     </select>
 
-    <select id="sort">
-        <option value="default">Sort by</option>
-        <option value="nearest">Nearest deadline</option>
-        <option value="farthest">Farthest deadline</option>
-    </select>
+    <select id="sort" aria-label="Sort assignments">
+    <option value="default">Sort by</option>
+    <option value="nearest">Nearest deadline</option>
+    <option value="farthest">Farthest deadline</option>
+    <option value="priority">Highest priority</option>
+</select>
 
-    <button
-        id="clearAllBtn"
-        class="delete-btn">
-        🗑️ Clear All
-    </button>
+    <button type="button" id="clearAllBtn" class="delete-btn">🗑️ Clear All</button>
 
 </div>
 
@@ -222,10 +205,13 @@
 
         </section>
 
-    </div>
+        </div>
 
+    <footer class="site-footer">
+        <p>Assignment Deadline Tracker</p>
+        <p>Stay organized. Meet your deadlines.</p>
+    </footer>
 
     <script src="script.js"></script>
-
 </body>
 </html>
