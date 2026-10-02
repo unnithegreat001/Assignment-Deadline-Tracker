@@ -911,3 +911,30 @@ body {
     }
 
 }
+.notification-btn {
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+    margin-top: 8px;
+}
+
+.notification-btn:hover {
+    background: #e5e7eb;
+}
+
+.notification-btn.enabled {
+    background: #ecfdf5;
+    color: #059669;
+    border-color: #a7f3d0;
+}
+
+.reminder-info {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-top: 8px;
+    border-radius: 20px;
+    background: #f5f3ff;
+    color: #7c3aed !important;
+    font-size: 0.8rem;
+    font-weight: 600;
+}

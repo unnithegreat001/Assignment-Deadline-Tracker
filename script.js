@@ -60,21 +60,26 @@ assignmentForm.addEventListener("submit", function(event) {
         document.getElementById("priority").value;
 
 
-    const assignment = {
+    const reminder =
+    document.getElementById("reminder").value;
 
-        id: Date.now(),
+const assignment = {
 
-        title: title,
+    id: Date.now(),
 
-        subject: subject,
+    title: title,
 
-        deadline: deadline,
+    subject: subject,
 
-        priority: priority,
+    deadline: deadline,
 
-        completed: false
+    priority: priority,
 
-    };
+    reminder: reminder,
+
+    completed: false
+
+};
 
 
     assignments.push(assignment);
@@ -280,6 +285,10 @@ function displayAssignments() {
     Priority: ${assignment.priority}
 </p>
 
+<p class="reminder-info">
+    🔔 Reminder: ${getReminderText(assignment.reminder)}
+</p>
+
 <p class="deadline-message">
     ${getDeadlineMessage(assignment.deadline)}
 </p>
@@ -441,7 +450,29 @@ function getDeadlineMessage(deadline) {
     return `Due in ${days} days`;
 
 }
+function getReminderText(reminder) {
+    if (reminder === "none" || reminder === undefined) {
+        return "No reminder";
+    }
 
+    if (reminder === "0") {
+        return "On deadline";
+    }
+
+    if (reminder === "1") {
+        return "1 day before";
+    }
+
+    if (reminder === "2") {
+        return "2 days before";
+    }
+
+    if (reminder === "7") {
+        return "1 week before";
+    }
+
+    return "No reminder";
+}
 // Mark assignment as completed
 
 function completeAssignment(id) {
@@ -510,7 +541,8 @@ function editAssignment(id) {
 
     document.getElementById("priority").value =
         assignment.priority;
-
+document.getElementById("reminder").value =
+    assignment.reminder || "none";
     assignments =
         assignments.filter(
             assignment =>
@@ -665,4 +697,145 @@ clearAllBtn.addEventListener(
         displayAssignments();
 
     }
+);
+
+
+
+
+
+const notificationBtn =
+    document.getElementById("notificationBtn");
+
+notificationBtn.addEventListener("click", async function () {
+    if (!("Notification" in window)) {
+        alert("Your browser does not support notifications.");
+        return;
+    }
+
+    const permission =
+        await Notification.requestPermission();
+
+    if (permission === "granted") {
+        notificationBtn.textContent =
+            "🔔 Notifications Enabled";
+
+        notificationBtn.classList.add("enabled");
+
+        new Notification(
+            "Assignment Deadline Tracker",
+            {
+                body: "Notifications have been enabled successfully."
+            }
+        );
+    } else {
+        alert("Notification permission was not granted.");
+    }
+});
+
+
+function checkReminders() {
+
+    if (
+        !("Notification" in window) ||
+        Notification.permission !== "granted"
+    ) {
+        return;
+    }
+
+    const today = new Date();
+
+    today.setHours(0, 0, 0, 0);
+
+
+    assignments.forEach(function (assignment) {
+
+        if (
+            assignment.completed ||
+            assignment.reminder === "none" ||
+            assignment.reminder === undefined
+        ) {
+            return;
+        }
+
+
+        const deadlineDate =
+            new Date(assignment.deadline);
+
+        deadlineDate.setHours(0, 0, 0, 0);
+
+
+        const difference =
+            deadlineDate - today;
+
+
+        const daysUntilDeadline =
+            Math.round(
+                difference /
+                (1000 * 60 * 60 * 24)
+            );
+
+
+        const reminderDays =
+            Number(assignment.reminder);
+
+
+        if (daysUntilDeadline === reminderDays) {
+
+            const notificationKey =
+                `${assignment.id}-${assignment.reminder}-${assignment.deadline}`;
+
+
+            const notified =
+                localStorage.getItem(
+                    `notification-${notificationKey}`
+                );
+
+
+            if (!notified) {
+
+                let message;
+
+
+                if (daysUntilDeadline === 0) {
+
+                    message =
+                        `${assignment.title} is due today.`;
+
+                } else if (daysUntilDeadline === 1) {
+
+                    message =
+                        `${assignment.title} is due tomorrow.`;
+
+                } else {
+
+                    message =
+                        `${assignment.title} is due in ${daysUntilDeadline} days.`;
+                }
+
+
+                new Notification(
+                    "🔔 Assignment Reminder",
+                    {
+                        body: message,
+                        icon: "🔔"
+                    }
+                );
+
+
+                localStorage.setItem(
+                    `notification-${notificationKey}`,
+                    "true"
+                );
+            }
+        }
+    });
+}
+
+
+checkReminders();
+
+
+setInterval(
+    checkReminders,
+    60 * 1000
 );
