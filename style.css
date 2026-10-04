@@ -951,3 +951,39 @@ button:disabled {
     cursor: not-allowed;
     opacity: 0.6;
 }
+/* Print-friendly layout */
+
+@media print {
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    header {
+        background: none;
+        color: black;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+
+    .assignment-form,
+    .controls,
+    .notification-btn,
+    .assignment-actions,
+    footer {
+        display: none !important;
+    }
+
+    .assignment-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+        margin-bottom: 12px;
+    }
+
+    .dashboard .card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+}
