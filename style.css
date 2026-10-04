@@ -938,3 +938,16 @@ body {
     font-size: 0.8rem;
     font-weight: 600;
 }
+/* Keyboard Accessibility */
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 3px solid #6366f1;
+    outline-offset: 2px;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
