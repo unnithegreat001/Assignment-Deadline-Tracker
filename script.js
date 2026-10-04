@@ -58,7 +58,23 @@ assignmentForm.addEventListener("submit", function(event) {
 
     const priority =
         document.getElementById("priority").value;
+// Validate assignment details
+if (!title.trim() || !subject.trim()) {
+    alert("Please enter both assignment title and subject.");
+    return;
+}
 
+// Prevent past deadlines
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+
+const deadlineDate = new Date(deadline);
+deadlineDate.setHours(0, 0, 0, 0);
+
+if (deadlineDate < today) {
+    alert("Deadline cannot be in the past.");
+    return;
+}
 
     const reminder =
     document.getElementById("reminder").value;
@@ -67,9 +83,8 @@ const assignment = {
 
     id: Date.now(),
 
-    title: title,
-
-    subject: subject,
+    title: title.trim(),
+    subject: subject.trim(),
 
     deadline: deadline,
 
